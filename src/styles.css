@@ -59,3 +59,7 @@ p {
   font-weight: 500;
   border-radius: 8px;
 }
+
+.btn-primary, .btn-outline-secondary {
+  font-size: 0.7rem;
+}

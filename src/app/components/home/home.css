@@ -48,7 +48,23 @@
   cursor: pointer;
 }
 
+.login{
+      font-size: 15px;
+}
 .hero-image img {
   max-height: 300px;
   filter: drop-shadow(0 20px 40px rgba(0,0,0,0.6));
 }
+
+@media (max-width: 768px) {
+  .hero-actions {
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+
+  .hero-actions button {
+    width: 100%;
+    text-align: center;
+  }
+}
+
