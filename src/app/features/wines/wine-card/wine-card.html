@@ -1,0 +1,36 @@
+<div class="card mb-3">
+  <div class="card-body card-wines">
+    <h5 class="card-title">{{ wine.name }} ({{ wine.year }})</h5>
+
+    @if (wine.measurements.length) {
+      <div class="table-responsive">
+        <table class="table table-sm">
+          <thead>
+            <tr>
+              <th>Any</th>
+              <th>Color</th>
+              <th>Temp</th>
+              <th>Grad</th>
+              <th>pH</th>
+              <th>Sensor</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (m of wine.measurements; track m.id) {
+              <tr>
+                <td>{{ m.year }}</td>
+                <td>{{ m.color }}</td>
+                <td>{{ m.temperature }}</td>
+                <td>{{ m.graduation }}</td>
+                <td>{{ m.ph }}</td>
+                <td>{{ m.sensor.name }}</td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    } @else {
+      <p class="mb-0 text-muted">Sense medicions.</p>
+    }
+  </div>
+</div>

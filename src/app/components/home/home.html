@@ -1,0 +1,28 @@
+<section class="hero-wine">
+  <div class="hero-content">
+    <h1>
+      Descubre el sabor<br />
+      del vino auténtico
+    </h1>
+
+    <p>
+      Vinos seleccionados con cuidado, elaborados<br />
+      con pasión y tradición.
+    </p>
+
+    <div class="hero-actions">
+      <button class="btn-outline" [routerLink]="['/wines']">Aprende más</button>
+      <button
+        class="btn-primary"
+        [routerLink]="['/userManagement', 'login']"
+        [queryParams]="{ mode: 'login' }"
+      >
+        Inicia Sesión para Probar
+      </button>
+    </div>
+  </div>
+
+  <div class="hero-image">
+    <img src="https://i.postimg.cc/T1wSF9VC/vinos.png" alt="Botella de vino" />
+  </div>
+</section>

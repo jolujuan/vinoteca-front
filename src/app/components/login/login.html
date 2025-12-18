@@ -1,0 +1,128 @@
+<div class="container mt-4">
+  <div class="row justify-content-center">
+    <div class="col-12 col-lg-8">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        @if (mode === 'login') {
+        <h3 class="m-0">Iniciar sesión</h3>
+        <button class="btn btn-outline-primary" type="button" (click)="goTo('register')">
+          Crear usuario
+        </button>
+        } @else {
+        <h3 class="m-0">Registrar usuario</h3>
+        <button class="btn btn-outline-secondary" type="button" (click)="goTo('login')">
+          Volver
+        </button>
+        }
+      </div>
+      <div class="card">
+        <div class="card-body p-4">
+          @if (error) {
+          <div class="alert alert-danger">{{ error }}</div>
+          } @if (registerOk) {
+          <div class="alert alert-success">{{ registerOk }}</div>
+          } @if (mode === 'login') {
+          <form #loginForm="ngForm" (ngSubmit)="loginForm.valid && loginSubmit()">
+            <div class="mb-3">
+              <label class="form-label">Email</label>
+              <input
+                type="text"
+                class="form-control"
+                name="email"
+                [(ngModel)]="email"
+                placeholder="admin"
+                required
+              />
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Password</label>
+              <input
+                type="password"
+                class="form-control"
+                name="password"
+                [(ngModel)]="password"
+                placeholder="admin"
+                required
+              />
+            </div>
+
+            <button
+              class="btn btn-primary w-100"
+              [disabled]="loading || loginForm.invalid"
+              type="submit"
+            >
+              @if (loading) { Entrando... } @else { Entrar }
+            </button>
+          </form>
+
+
+
+          
+          } @else {
+          <form #registerForm="ngForm" (ngSubmit)="registerForm.valid && registerSubmit()">
+            <div class="mb-3">
+              <label class="form-label">Nombre</label>
+              <input
+                type="text"
+                class="form-control"
+                name="name"
+                [(ngModel)]="name"
+                placeholder="Jose"
+                required
+              />
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Apellidos</label>
+              <input
+                type="text"
+                class="form-control"
+                name="surname"
+                [(ngModel)]="surname"
+                placeholder="Juan"
+                required
+              />
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Email</label>
+              <input
+                type="email"
+                class="form-control"
+                name="regEmail"
+                [(ngModel)]="regEmail"
+                placeholder="user@example.com"
+                required
+              />
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Password (min 6)</label>
+              <input
+                type="password"
+                class="form-control"
+                name="regPassword"
+                [(ngModel)]="regPassword"
+                placeholder="admin1234"
+                required
+              />
+            </div>
+
+            <div class="alert alert-info">
+              Rol asignado automáticamente: <strong>ROLE_USER</strong>
+            </div>
+
+            <button
+              class="btn btn-success w-100"
+              [disabled]="loading || registerForm.invalid"
+              type="submit"
+            >
+              @if (loading) { Registrando... } @else { Registrar }
+            </button>
+          </form>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

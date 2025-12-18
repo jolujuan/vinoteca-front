@@ -1,1 +1,61 @@
-/* You can add global styles to this file, and also import other style files */
+body,
+html {
+  overflow-x: hidden;
+  background: radial-gradient(circle at right, #5a0f1a 0%, #0b0b0b 55%);
+}
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+.mt-4 {
+  margin: 0 auto;
+  max-width: 65%;
+  margin-bottom: 1.5rem !important;
+}
+
+.card-wines {
+  text-align: center;
+}
+
+
+.card-title {
+  padding-bottom: 18px;
+  font-weight: bolder;
+  font-size: 22px;
+}
+
+h2,
+h3,
+p {
+  color: #fff;
+}
+
+.btn-outline-secondary {
+  color: #e5e7eb;
+  border-color: #6b7280;
+  background-color: transparent;
+  font-weight: 500;
+  border-radius: 8px;
+  padding: 6px 14px;
+  transition: all 0.2s ease;
+}
+
+.btn-outline-secondary:hover {
+  color: #111827;
+  background-color: #e5e7eb;
+  border-color: #e5e7eb;
+}
+
+.btn-outline-secondary:active {
+  transform: scale(0.97);
+}
+
+.btn-outline-primary {
+  color: #e5e7eb;
+  border-color: #3b82f6;
+  font-weight: 500;
+  border-radius: 8px;
+}

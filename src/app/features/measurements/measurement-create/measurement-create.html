@@ -1,0 +1,140 @@
+<div class="container mt-4">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h2 class="mb-0">Añadir medición</h2>
+    <a class="btn btn-outline-secondary" [routerLink]="['/wines']">Volver</a>
+  </div>
+
+  @if (error) {
+  <div class="alert alert-danger">{{ error }}</div>
+  } @if (ok) {
+  <div class="alert alert-success">{{ ok }}</div>
+  }
+
+  <div class="card">
+    <div class="card-body">
+      <form #registerSensor="ngForm" (ngSubmit)="registerSensor.valid && submit()">
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label class="form-label small text-muted">ID Sensor</label>
+            <div class="input-group">
+              <input
+                class="form-control campos"
+                type="number"
+                name="idSensor"
+                [(ngModel)]="form.idSensor"
+                required
+                min="1"
+                placeholder="Ej: 4"
+              />
+
+              @if (sensorNameById[form.idSensor]) {
+              <span class="input-group-text campos2">
+                {{ sensorNameById[form.idSensor] }}
+              </span>
+              }
+            </div>
+          </div>
+
+          <div class="col-md-6 mb-3">
+            <label class="form-label small text-muted">ID Vino</label>
+            <div class="input-group">
+              <input
+                class="form-control campos"
+                type="number"
+                name="idWine"
+                [(ngModel)]="form.idWine"
+                required
+                min="1"
+                placeholder="Ej: 1"
+              />
+
+              @if (wineNameById[form.idWine]) {
+              <span class="input-group-text campos2">
+                {{ wineNameById[form.idWine] }}
+              </span>
+              }
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-4 mb-3">
+            <label class="form-label">Año</label>
+            <input
+              class="form-control"
+              type="number"
+              name="year"
+              [(ngModel)]="form.year"
+              required
+              min="1900"
+              max="2100"
+            />
+          </div>
+
+          <div class="col-md-8 mb-3">
+            <label class="form-label">Color</label>
+            <input
+              class="form-control"
+              type="text"
+              name="color"
+              [(ngModel)]="form.color"
+              required
+              placeholder="Rojo, Amarillo..."
+            />
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-4 mb-3">
+            <label class="form-label">Temperatura</label>
+            <input
+              class="form-control"
+              type="number"
+              name="temperature"
+              [(ngModel)]="form.temperature"
+              required
+              step="0.1"
+            />
+          </div>
+
+          <div class="col-md-4 mb-3">
+            <label class="form-label">Graduación</label>
+            <input
+              class="form-control"
+              type="number"
+              name="graduation"
+              [(ngModel)]="form.graduation"
+              required
+              step="0.1"
+            />
+          </div>
+
+          <div class="col-md-4 mb-3">
+            <label class="form-label">pH</label>
+            <input
+              class="form-control"
+              type="number"
+              name="ph"
+              [(ngModel)]="form.ph"
+              required
+              step="0.1"
+            />
+          </div>
+        </div>
+
+        <button
+          class="btn btn-primary w-100"
+          type="submit"
+          [disabled]="
+            loading ||
+            registerSensor.invalid ||
+            !wineNameById[form.idWine] ||
+            !sensorNameById[form.idSensor]
+          "
+        >
+          @if (loading) { Creando... } @else { Crear medición }
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

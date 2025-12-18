@@ -1,0 +1,49 @@
+<footer class="footer-07">
+  <div class="row justify-content-center">
+    <div class="col-md-12 text-center">
+      <h2 class="footer-heading"><a href="#" class="logo">Vinoteca360</a></h2>
+      <p class="menu">
+        <a href="#">Home</a>
+        <a [routerLink]="['/wines']">Vinos</a>
+
+        @if (!isLoggedIn()) {
+        <a [routerLink]="['/userManagement', 'login']" [queryParams]="{ mode: 'login' }">Login</a>
+        } @else {
+        <a [routerLink]="['/userManagement', 'login']">Sensores</a>
+        <a style="cursor: pointer;" (click)="logout()">Logout</a>
+        }
+      </p>
+      <ul class="ftco-footer-social p-0">
+        <ul class="ftco-footer-social p-0">
+          <li class="ftco-animate">
+            <a data-toggle="tooltip" data-placement="top" title="Instagram">
+              <span class="ion-logo-instagram">
+                <img src="https://www.svgrepo.com/show/349410/instagram.svg" alt="Instagram" />
+              </span>
+            </a>
+          </li>
+          <li class="ftco-animate">
+            <a data-toggle="tooltip" data-placement="top" title="Facebook">
+              <span class="ion-logo-facebook">
+                <img src="https://www.svgrepo.com/show/349359/facebook.svg" alt="Facebook" />
+              </span>
+            </a>
+          </li>
+          <li class="ftco-animate">
+            <a data-toggle="tooltip" data-placement="top" title="Twitter">
+              <span class="ion-logo-twitter">
+                <img src="https://www.svgrepo.com/show/349537/twitter.svg" alt="Twitter" />
+              </span>
+            </a>
+          </li>
+        </ul>
+      </ul>
+    </div>
+  </div>
+  <div class="row mt-5">
+    <div class="col-md-12 text-center">
+      <p class="copyright">Copyright &copy; {{ currentYear }} Jose Luis</p>
+      <p>Todos los derechos reservados</p>
+    </div>
+  </div>
+</footer>

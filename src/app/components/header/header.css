@@ -1,0 +1,16 @@
+.btnSensors {
+  color: white;
+  border-color: rgb(181, 180, 180);
+  margin-right: 15px;
+}
+
+@media (max-width: 991.98px) {
+  .navbar-nav .vr {
+    width: 10% !important;
+    height: 1px;
+    margin-left: 0;
+  }
+  .mx-2{
+    margin-left: 0% !important;
+  }
+}

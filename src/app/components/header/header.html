@@ -1,0 +1,92 @@
+<nav class="style navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Vinoteca360</a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a
+            class="nav-link active"
+            aria-current="page"
+            [routerLink]="['/home']"
+            [routerLinkActive]="['active']"
+            >Home</a
+          >
+        </li>
+
+        <li class="nav-item">
+          <a
+            class="nav-link active"
+            aria-current="page"
+            [routerLink]="['/wines']"
+            [routerLinkActive]="['active']"
+            >Vinos</a
+          >
+        </li>
+
+        <li class="nav-item">
+          @if (!isLoggedIn()) {
+          <a
+            class="nav-link login"
+            [routerLink]="['/userManagement', 'login']"
+            [queryParams]="{ mode: 'login' }"
+            routerLinkActive="active"
+            >Login</a
+          >
+          }
+        </li>
+
+        <li class="nav-item">
+          @if (isLoggedIn()) {
+          <a
+            class="nav-link active vinos"
+            aria-current="page"
+            [routerLink]="['/sensors']"
+            [routerLinkActive]="['active']"
+            >Sensores</a
+          >
+          }
+        </li>
+
+        @if (isLoggedIn()) {
+        <div class="vr mx-2" style="background-color: #fff; opacity: 0.6; width: 2px"></div>
+
+        <li class="nav-item">
+          <button class="nav-link btn btn-outline-danger text-white" (click)="logout()">
+            Logout
+          </button>
+        </li>
+        }
+      </ul>
+
+      <div class="d-flex" role="search">
+        <input
+          class="form-control me-2"
+          [(ngModel)]="filter"
+          (keyup.enter)="searchButtonClick.click()"
+          type="search"
+          placeholder="Search"
+          aria-label="Search"
+        />
+        <a
+          class="btn btn-outline-success"
+          [routerLink]="['/wines', filter]"
+          routerLinkActive="router-link-active"
+          #searchButtonClick
+          type="button"
+          >Search</a
+        >
+      </div>
+    </div>
+  </div>
+</nav>
