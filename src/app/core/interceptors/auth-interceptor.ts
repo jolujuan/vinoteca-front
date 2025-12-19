@@ -18,9 +18,19 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
   return next(authReq).pipe(
     catchError((err) => {
       if (err?.status === 401 || err?.status === 403) {
-        auth.logout();
-        router.navigateByUrl('/login');
-      }
+        alert(
+          'NO TIENES PERMISOS PARA REALIZAR ESTA ACCIÓ.\n\n' +
+          'La sesión se cerrara en breves.'
+        );
+
+        setTimeout(() => {
+          auth.logout();
+          router.navigateByUrl('/login').then(() => {
+            window.location.reload();
+          });
+        }, 3000);    
+}
+
       return throwError(() => err);
     })
   );
