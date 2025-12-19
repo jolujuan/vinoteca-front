@@ -1,26 +1,27 @@
 import { inject } from '@angular/core';
 import { HttpInterceptorFn } from '@angular/common/http';
 import { AuthService } from '../services/auth/auth.service';
-import { catchError, throwError } from 'rxjs';
+import { catchError, EMPTY } from 'rxjs';
 import { Router } from '@angular/router';
 
 export const authInterceptor: HttpInterceptorFn = (req, next) => {
   const auth = inject(AuthService);
-    const router = inject(Router);
+  const router = inject(Router);
   const token = auth.getToken();
 
   if (!token) return next(req);
 
-  const authReq = token
-    ? req.clone({ setHeaders: { Authorization: `Bearer ${token}` } })
-    : req;
+  const authReq = req.clone({
+    setHeaders: { Authorization: `Bearer ${token}` },
+  });
 
   return next(authReq).pipe(
     catchError((err) => {
       if (err?.status === 401 || err?.status === 403) {
+
         alert(
-          'NO TIENES PERMISOS PARA REALIZAR ESTA ACCIÓ.\n\n' +
-          'La sesión se cerrara en breves.'
+          'NO TIENES PERMISOS PARA REALIZAR ESTA ACCIÓN.\n\n' +
+          'La sesión se cerrará en breves.'
         );
 
         setTimeout(() => {
@@ -28,10 +29,12 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
           router.navigateByUrl('/login').then(() => {
             window.location.reload();
           });
-        }, 3000);    
-}
+        }, 3000);
 
-      return throwError(() => err);
+        return EMPTY;
+      }
+
+      return EMPTY;
     })
   );
 };
