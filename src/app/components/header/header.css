@@ -10,7 +10,19 @@
     height: 1px;
     margin-left: 0;
   }
-  .mx-2{
+  .mx-2 {
     margin-left: 0% !important;
   }
+}
+
+.dream-text {
+  font-family: 'Allura', 'Great Vibes', 'Dancing Script', cursive;
+  font-weight: 300;
+  font-size: 1.4em;
+  letter-spacing: 0.08em;
+  color: rgba(255, 255, 255, 0.85);
+  white-space: nowrap;
+  align-self: center;
+  margin-left: auto;
+  margin-right: 15px;
 }
