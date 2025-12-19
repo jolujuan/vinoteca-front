@@ -19,17 +19,20 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
     catchError((err) => {
       if (err?.status === 401 || err?.status === 403) {
 
-        alert(
-          'NO TIENES PERMISOS PARA REALIZAR ESTA ACCIÓN.\n\n' +
-          'La sesión se cerrará en breves.'
-        );
-
         setTimeout(() => {
-          auth.logout();
-          router.navigateByUrl('/login').then(() => {
-            window.location.reload();
-          });
-        }, 3000);
+          window.alert(
+            'NO TIENES PERMISOS PARA REALIZAR ESTA ACCIÓN.\n\n' +
+            'La sesión se cerrará en breves.'
+          );
+
+          setTimeout(() => {
+            auth.logout();
+            router.navigateByUrl('/login').then(() => {
+              window.location.reload();
+            });
+          }, 3000);
+
+        }, 0);
 
         return EMPTY;
       }
